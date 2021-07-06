@@ -6,6 +6,8 @@
 # Implemented by Xiang Zejun, State Key Laboratory of Information Security, 
 # Institute Of Information Engineering, CAS
 
+
+
 from reducelin import Reduce
 
 if __name__ == "__main__":

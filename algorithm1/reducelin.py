@@ -14,7 +14,7 @@ class Reduce(Sbox):
 		fileobj = open(self.filename, "r")
 		ine = []
 		for i in fileobj:
-			ine.append(map(int, (i.strip()).split()))
+			ine.append(list(map(int, (i.strip()).split())))
 		fileobj.close()
 		return ine
 
@@ -27,7 +27,7 @@ class Reduce(Sbox):
 		length l. 
 		we assume the length of the bitstring representation of n is < 256
 		"""
-		s = map(int, list(format(n, "0256b")))
+		s = list(map(int, list(format(n, "0256b"))))
 		s = s[len(s) - l :]
 		return s
 
