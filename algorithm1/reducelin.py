@@ -36,7 +36,7 @@ class Reduce(Sbox):
 		"""
 		Evaluate the value of the linear inequality at point p, and l represents a linear inequality.
 		"""
-		assert len(p) + 1 == len(l)
+		assert len(p) + 1 == len(l), str(p)+str(l)
 		# COPY the list, since we will modify the list and this will result in a 
 		# change of the list outside the function.
 		temp_p = copy.deepcopy(p)
@@ -63,7 +63,11 @@ class Reduce(Sbox):
 		ineq = copy.deepcopy(inequalities)
 		# rineq stores the inequalities we choose
 		rineq = []
-		while len(cpoints) > 0:
+		index = 0
+		for p in ineq:
+			if len(p) != 17:
+				print("有值小于17！！！！")
+		while len(cpoints) > 0 and len(ineq) > 0:
 			temp_p = []
 			temp_l = []
 			# Fine the inequality which has the most points in cpoints that do
@@ -73,9 +77,17 @@ class Reduce(Sbox):
 				if len(temp) > len(temp_p):
 					temp_p = temp
 					temp_l = l
+			if len(temp_p) == 0:
+				print("空了")
+				print(ineq)
+				break
 			for p in temp_p:
 				cpoints.remove(p)
 			rineq.append(temp_l)
+			print("rineq is --------------" + str(len(rineq)))
+			print(rineq)
 			ineq.remove(temp_l)
+			print("index = " + str(index) + ", len(cpoints) = " + str(len(cpoints)))
+			index += 1
 		return rineq
 
